@@ -8,7 +8,7 @@ interface Rent {
   cedula: string;
   nombre: string;
   fecha: string;
-  tiempo_alquilado: string;
+  tiempo_dias: string;
   saldo: string;
   placa: string;
   marca: string;
@@ -97,7 +97,7 @@ export default function Home() {
                 <th>Cedula</th>
                 <th>Nombre</th>
                 <th>Fecha alquiler</th>
-                <th>Tiempo alquilado</th>
+                <th>Tiempo alquilado (dias)</th>
                 <th>Saldo</th>
                 <th>Placa</th>
                 <th>Marca</th>
@@ -114,7 +114,7 @@ export default function Home() {
                   <td colSpan={7} className="text-center h-10">No se encontraron resultados para la fecha seleccionada</td>
                 </tr>
               )}
-              {filteredData.map((item, key) => (
+              {filteredData.map((item : Rent, key) => (
                 <tr className="border-b border-gray-200 h-10" key={key}>
                   <td>{item.cedula}</td>
                   <td>{item.nombre}</td>
@@ -126,8 +126,8 @@ export default function Home() {
                       day: 'numeric',
                     })}
                   </td>
-                  <td>{item.tiempo_alquilado}</td>
-                  <td>{item.saldo}</td>
+                  <td>{item.tiempo_dias}</td>
+                  <td>${item.saldo}</td>
                   <td>{item.placa}</td>
                   <td>{item.marca}</td>
                 </tr>
