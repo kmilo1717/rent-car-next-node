@@ -1,0 +1,32 @@
+services:
+  db:
+    container_name: rent-cars-mysql
+    image: mysql:8
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes" 
+      MYSQL_DATABASE: alquilerdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./alquilerdb.sql:/docker-entrypoint-initdb.d/alquilerdb.sql
+
+  backend:
+    container_name: rent-cars-node
+    build:
+      context: rent-cars-node
+    ports:  
+      - "4000:4000"
+    restart: on-failure:2
+    environment:
+      DB_HOST: rent-cars-mysql
+      DB_USER: root
+      DB_NAME: alquilerdb
+  
+  frontend:
+    container_name: rent-cars-next
+    build:
+      context: rent-cars-next-react
+    ports:  
+      - "3000:3000"
+    restart: on-failure:2
+    

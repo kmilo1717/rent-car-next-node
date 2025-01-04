@@ -1,4 +1,4 @@
-CREATE DATABASE alquilerdb;
+CREATE DATABASE IF NOT EXISTS alquilerdb;
 USE alquilerdb;
 
 -- Tabla CLIENTE
